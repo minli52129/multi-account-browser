@@ -7,7 +7,31 @@
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
-    "start": "electron-vite preview"
+    "start": "electron-vite preview",
+    "dist": "electron-vite build && electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.mab.multi-account-browser",
+    "productName": "Multi Account Browser",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.dmg"
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "contents": [
+        { "x": 130, "y": 220 },
+        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+      ]
+    }
   },
   "dependencies": {
     "@electron-toolkit/utils": "^3.0.0"
@@ -17,6 +41,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
     "electron": "^33.0.0",
+    "electron-builder": "^26.15.3",
     "electron-vite": "^2.3.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
