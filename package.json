@@ -8,10 +8,11 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "start": "electron-vite preview",
-    "dist": "electron-vite build && electron-builder --mac --win",
+    "dist": "electron-vite build && electron-builder --mac --win --linux",
     "dist:mac-arm": "electron-vite build && electron-builder --mac --arm64",
     "dist:mac-intel": "electron-vite build && electron-builder --mac --x64",
-    "dist:win": "electron-vite build && electron-builder --win --x64"
+    "dist:win": "electron-vite build && electron-builder --win --x64",
+    "dist:linux": "electron-vite build && electron-builder --linux --x64"
   },
   "build": {
     "appId": "com.mab.multi-account-browser",
@@ -38,6 +39,12 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "artifactName": "${productName}-${version}-linux-x64.AppImage"
     },
     "dmg": {
       "title": "${productName} ${version}",
